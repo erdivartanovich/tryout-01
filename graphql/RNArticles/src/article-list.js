@@ -10,8 +10,8 @@ import Spinner from './spinner';
 
 const server = 'http://192.168.40.5:4000'; //change this ip base on your environment
 
-const getListArticle = () => {
-    return fetch(server + '/graphql', {
+const getListArticle = async () => {
+    return await fetch(server + '/graphql', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',

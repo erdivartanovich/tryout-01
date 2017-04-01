@@ -59,7 +59,7 @@ var root = {
 
     database[id] = input;
     var article = new Article(id, input); 
-    console.log('article created', article);
+    console.log('article created:', article);
     return article;
   },
   updateArticle: function ({id, input}) {
@@ -69,7 +69,7 @@ var root = {
     // This replaces all old data
     database[id] = input;
     var article = new Article(id, input); 
-    console.log('article updated', article);
+    console.log('article updated:', article);
     return article;
   },
 }

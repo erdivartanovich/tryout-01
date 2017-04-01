@@ -3,6 +3,7 @@ import {
   View,
   Button,
   ScrollView,
+  Text,
   TextInput,
 } from 'react-native';
 
@@ -10,6 +11,7 @@ import axios from 'axios';
 
 import ArticleDetail from './article-detail';
 import Spinner from './spinner';
+import WithLabel from './labeled-text-input';
 
 const server = 'http://10.0.2.2:4000/'; //change this ip base on your environment
 
@@ -59,7 +61,7 @@ class ArticleList extends Component {
 
         http.post('graphql', {
             query: `mutation {
-                createArticle(input: {title: ${ArticleTitle}, content: ${ArticleContent}, author: ${ArticleAuthor}}) {
+                createArticle(input: {title: "${ArticleTitle}", content: "${ArticleContent}", author: "${ArticleAuthor}"}) {
                     id title content author
                 }
             }`,
@@ -83,19 +85,30 @@ class ArticleList extends Component {
     render() {
         return (
             <View style={{ flex: 1 }}>
-                <View style={{flex: 9}}>
+                <View style={{flex: 7}}>
                     <ScrollView >
                         {this.renderArticleList()}
                     </ScrollView>
                 </View>
-                <View style={{flex: 1}}>
+                <View style={{flex: 3}}>
+                    <View style={{backgroundColor: 'gray', alignItems: 'center'}}>
+                        <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18}}>
+                            ADD NEW ARTICLE
+                        </Text>
+                    </View>
                     <View>
-                        <TextInput placeholder="title:" onChangeText={(value) => this.setState({ArticleTitle: value})}/>
-                        <TextInput placeholder="content:" onChangeText={(value) => this.setState({ArticleContent: value})}/>
-                        <TextInput placeholder="author:" onChangeText={(value) => this.setState({ArticleAuthor: value})}/>
+                        <WithLabel label="Title:">
+                            <TextInput placeholder="title" onChangeText={(value) => this.setState({ArticleTitle: value})}/>
+                        </WithLabel>
+                        <WithLabel label="Content:">
+                            <TextInput placeholder="content" multiline = {true} onChangeText={(value) => this.setState({ArticleContent: value})}/>
+                        </WithLabel>
+                        <WithLabel label="Author:">
+                            <TextInput placeholder="author" onChangeText={(value) => this.setState({ArticleAuthor: value})}/>
+                        </WithLabel>
                     </View>
                     <View style ={{backgroundColor: "red"}}>
-                        <Button title="Add New" onPress={this.addNew()}/>
+                        <Button title="Add New" onPress={this.addNew}/>
                     </View>
                 </View>
             </View>

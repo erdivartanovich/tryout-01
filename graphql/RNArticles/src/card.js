@@ -1,13 +1,16 @@
 import React from 'react';
 import {
     View,
+    TouchableOpacity,
     StyleSheet,
 } from 'react-native';
 
 const Card = (props) =>
-    <View style={[styles.card]}>
-        {props.children}
-    </View>;
+    <TouchableOpacity>
+        <View style={[styles.card]}>
+            {props.children}
+        </View>
+    </TouchableOpacity>
 
 const styles = StyleSheet.create({
     card: {

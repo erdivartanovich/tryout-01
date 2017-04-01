@@ -13,10 +13,9 @@ const ArticleDetail = (props) =>
         <CardSection style={styles.headerSection}>
             <View></View>
             <View style={styles.headerSection}>
-                <Text style={{ fontSize: 16 }} > {props.article.id} </Text>
                 <Text style={{ fontSize: 16 }} > {props.article.title} </Text>
+                <Text style={{ fontSize: 12 }} > by: {props.article.author} </Text>
                 <Text style={{ fontSize: 12 }} > {props.article.content} </Text>
-                <Text style={{ fontSize: 12 }} > {props.article.author} </Text>
             </View>
         </CardSection>
     </Card>;

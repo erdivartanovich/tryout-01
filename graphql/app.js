@@ -45,8 +45,25 @@ var schema = buildSchema(`
 `);
 
 
-// init fake database, no need to use persistance storage right?
-var database = [];
+// init fake database, with some data, no need to use persistance storage right?
+var database = [{
+  id: '73648731264',
+  title: 'ada apa dengan cinta',
+  content: 'entahlah',
+  author: 'somebody'
+},
+{
+  id: '3465356536354',
+  title: 'Cinta tidak pernah mati',
+  content: 'sama seperti judul',
+  author: 'somebody'
+},
+{
+  id: '8769898698',
+  title: 'Cinta yang mati bukan cinta',
+  content: 'cukup jelas',
+  author: 'johnny monny'
+}];
 
 var root = {
   getArticle: function ({id}) {
@@ -99,6 +116,6 @@ app.use('/graphql', graphqlHTTP({
   graphiql: true,
 }));
 
-app.listen(4000, () => {
+app.listen(4000, '0.0.0.0', () => {
   console.log('Running a GraphQL API server at localhost:4000/graphql');
 });

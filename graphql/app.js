@@ -10,7 +10,7 @@ import { buildSchema } from 'graphql';
 
 //define data class
 class Article {
-  constructor(id, {title, content, author}) {
+  constructor({id, title, content, author}) {
     //i destructure the three paramater into one object wrapper so it would be easily to use
     //as the input parameter
     this.id = id; //this should be auto generated value
@@ -33,44 +33,59 @@ var schema = buildSchema(`
     content: String
     author: String
   }
+
   type Query {
     getArticle(id: ID!): Article
+    getArticles: [Article]
   }
   type Mutation {
     createArticle(input: ArticleInput): Article
-    updateArticle(id: ID!, input: ArticleInput): Article
+    updateArticle(id: ID!, input: ArticleInput): Boolean
   }
 `);
 
 
 // init fake database, no need to use persistance storage right?
-var database = {};
+var database = [];
 
 var root = {
   getArticle: function ({id}) {
-    if (!database[id]) {
+    const cb = (item) => {
+      return item.id = id;
+    }
+    const res = database.filter(cb);
+    if (!res) {
       throw new Error('no Article exists with id ' + id);
     }
-    return new Article(id, database[id]);
+    return new Article({id: id, title: res.title, content: res.content, author: res.author});
   },
+
+  getArticles: function () {
+    return database;
+  },
+
   createArticle: function ({input}) {
     // Create a random id for our "database".
     var id = require('crypto').randomBytes(10).toString('hex');
-
-    database[id] = input;
-    var article = new Article(id, input); 
+    var title = input.title;
+    var content = input.content;
+    var author = input.author;
+    var article = new Article({id, title, content, author}); 
+    database.push(article);
     console.log('article created:', article);
+    console.log('db', database);
     return article;
   },
   updateArticle: function ({id, input}) {
-    if (!database[id]) {
-      throw new Error('no Article exists with id ' + id);
-    }
-    // This replaces all old data
-    database[id] = input;
-    var article = new Article(id, input); 
-    console.log('article updated:', article);
-    return article;
+    new_db = database.map(item => {
+      if (item.id = id) {
+        item.title = input.title
+        item.content = input.content
+        item.author = input.author
+      }
+    });
+    database = new_db;
+    return true;
   },
 }
 

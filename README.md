@@ -16,3 +16,20 @@ article = {
     author: String
 }
 ``` 
+### How to run the project
+
+### Run the server
+
+- in the terminal, change dir into graphql directory
+    ```
+        cd graphql
+    ```
+- run npm install
+    ```
+        npm install
+    ```
+- Run it! this project use babel to transpile ES6 code to ES5
+don't directly run it via **node** command. so use npm start instead:  
+    ```
+        npm start
+    ```

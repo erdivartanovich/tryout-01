@@ -131,7 +131,7 @@ mutation
 
 enter this query and press Execute Query 
 
-```json
+```
 mutation
 {
             updateArticle(id: "", input: {title: "", content: "", author: ""})

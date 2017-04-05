@@ -59,9 +59,9 @@ react-native run-android
 ### Data Schema
 
 The schema for this project is about articles. It should contain title, content and author.
-So this is the JSON schema that reflect this scenario:
+So this is the json schema that reflect this scenario:
 
-```JSON
+```json
 article = {
     id: Int,
     title: String,
@@ -95,7 +95,7 @@ don't directly run it via **node** command. so use npm start instead:
 
 enter this query and press Execute Query 
 
-```JSON
+```json
 {
             getArticles{
                 id
@@ -110,7 +110,7 @@ enter this query and press Execute Query
 
 enter this query and press Execute Query 
 
-```JSON
+```json
 {
             getArticle(id: "the id")
 }
@@ -121,7 +121,7 @@ enter this query and press Execute Query
 
 enter this query and press Execute Query 
 
-```JSON
+```json
 mutation
 {
             createArticle(input: {title: "", content: "", author: ""})
@@ -131,7 +131,7 @@ mutation
 
 enter this query and press Execute Query 
 
-```JSON
+```json
 mutation
 {
             updateArticle(id: "", input: {title: "", content: "", author: ""})

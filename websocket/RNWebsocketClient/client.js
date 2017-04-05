@@ -10,7 +10,7 @@ class Main extends React.Component {
     super(props);
     this.state = {
       messages: [],
-      userId: null
+      userId: null,
     };
 
     this.determineUser = this.determineUser.bind(this);
@@ -57,14 +57,18 @@ class Main extends React.Component {
   }
 
   render() {
-    const user = { _id: this.state.userId || -1 };
+    const user = { 
+        _id: this.state.userId|| -1,
+        name: 'kajsdfkljdas',
+        avatar: './avatar.png'
+    };
 
     return (
-      <GiftedChat
-        messages={this.state.messages}
-        onSend={this.onSend}
-        user={user}
-      />
+        <GiftedChat
+            messages={this.state.messages}
+            onSend={this.onSend}
+            user={user}
+        />
     );
   }
 

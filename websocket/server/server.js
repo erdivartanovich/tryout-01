@@ -1,6 +1,7 @@
 const express = require('express');
 const http = require('http')
 const socketio = require('socket.io');
+const moment = require('moment');
 
 const app = express();
 const server = http.Server(app);
@@ -18,9 +19,23 @@ const users = [];
 const messages = [
   {
     chatId: 1, 
+    _id: getRandomInt(), 
     text: 'welcome to the channel',
-    user: {_id: 999},
-    _id: 'server-bot' 
+    user: {
+      _id: 999, 
+      name: 'Server-Bot' , 
+    },
+    createdAt: new Date(moment()),
+  },
+  {
+    chatId: 2, 
+    _id: getRandomInt(), 
+    text: 'Just Say Something here',
+    user: {
+      _id: 999, 
+      name: 'Server-Bot', 
+    },
+    createdAt: new Date(moment()),
   }
 ];
 
@@ -39,11 +54,14 @@ function onUserJoined(userId, socket) {
   try {
     if (!userId) {
       const idx = users.length + 1;
-      const new_user = {_id: idx}
+      const new_user = {
+        _id: `user-${idx}`,
+        name: `user ${idx}`
+      }
       //add the new user to storage
       users.push(new_user);
       //emit user joined message
-      console.log('new user joined: ', new_user);
+      console.log('new user is joined: ', new_user);
       socket.emit('userJoined: ', new_user._id);
       user[socket.id] = new_user._id;
       _sendExistingMessages(socket);
@@ -61,6 +79,7 @@ function onUserJoined(userId, socket) {
 // When a user sends a message in the chatroom.
 function onMessageReceived(message, senderSocket) {
   const userId = user[senderSocket.id];
+  console.log(`${userId} is sending message: ${message.text} at ${message.createdAt}`);
   if (!userId) return;
   _sendAndSaveMessage(message, senderSocket);
 }
@@ -79,8 +98,15 @@ function getMessages() {
 }
 
 function _sendAndSaveMessage(message, socket, fromServer) {
+  const messageData = {
+    _id: message._id,
+    text: message.text,
+    user: message.user,
+    createdAt: new Date(message.createdAt),
+    chatId: chatId
+  };
   //save the messages
-  messages.push(message);
+  messages.push(messageData);
   // If the message is from the server, then send to everyone.
   const emitter = fromServer ? websocket : socket.broadcast;
   emitter.emit('message', [message]);
@@ -91,6 +117,12 @@ const stdin = process.openStdin();
 stdin.addListener('data', function(d) {
   _sendAndSaveMessage({
     text: d.toString().trim(),
-    user: { _id: 'robot' }
+    user: { _id: 'Server-Bot', name: 'Server-Bot' }
   }, null /* no socket */, true /* send from server */);
 });
+
+function getRandomInt() {
+  min = Math.ceil(1);
+  max = Math.floor(9999);
+  return Math.floor(Math.random() * (max - min)) + min;
+}

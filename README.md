@@ -176,4 +176,4 @@ MIT
 
 ## Footnote
 
-This repository is maintained by Erdiansyah. Get in touch with the author here [by email](erdiavartanovich@gmail.co) or via linkedin [here](http://linkedin.com/in/erdivartanovich)
+This repository is maintained by Erdiansyah. Get in touch with the author here [by email](erdivartanovich@gmail.com) or via linkedin [here](http://linkedin.com/in/erdivartanovich)

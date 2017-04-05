@@ -18,7 +18,36 @@ node index.js
 
 ## WEBSOCKET
 
-### Note: Not enough time to finish this
+### The Server
+
+#### HOW TO RUN
+
+```
+cd websocket/server
+npm install
+node server.js
+```
+
+The server will listen to every connected user, and display user message and broadcast the message to all connected user.
+
+### Visualization
+
+![Server Image](websocket-server.jpg)
+
+### The Client
+
+#### HOW TO RUN
+
+```
+cd websocket/client
+npm install
+react-native start
+react-native run-android
+```
+
+### Visualization
+
+![Client Image](websocket-client.jpg)
 
 
 

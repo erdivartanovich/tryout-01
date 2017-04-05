@@ -1,4 +1,6 @@
-websocket/node_modules/
+websocket/server/node_modules/
+websocket/RNWebsocketClient/node_modules/
+websocket/RNWebsocketClient/build/
 graphql/node_modules/
 RNArticles/node_modules/
 RNArticles/build/

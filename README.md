@@ -87,11 +87,18 @@ don't directly run it via **node** command. so use npm start instead:
         npm start
     ```
 
-### Simulate Query and manipulate data from the server
+### Simulate query and manipulate data from the server
 
-**First hit url in the brwoser at url : 'http://localhost:4000/graphql'**
+- **First hit url in the browser at url : http://localhost:4000/graphql**
 
-**Query List Of Article**
+you'll enter the GraphQl in-browser tool, which is useful for writing, validating, and
+testing GraphQL queries.
+
+<p style="text-align:center">
+    <img src="graphql-server.jpg" height="500" />
+</p> 
+
+- **Query List Of Article**
 
 enter this query and press Execute Query 
 
@@ -106,7 +113,7 @@ enter this query and press Execute Query
 }
 ```
 
-**Get Article by ID**
+- **Get Article by ID**
 
 enter this query and press Execute Query 
 
@@ -117,7 +124,7 @@ enter this query and press Execute Query
 ```
 
 
-**Create new Article**
+- **Create new Article**
 
 enter this query and press Execute Query 
 
@@ -127,7 +134,7 @@ mutation
             createArticle(input: {title: "", content: "", author: ""})
 }
 ```
-**Update article by ID**
+- **Update article by ID**
 
 enter this query and press Execute Query 
 
@@ -169,4 +176,4 @@ MIT
 
 ## Footnote
 
-This repository is maintained by Erdiansyah. Get in touch with the author here [by email](erdiavartanovich@gmail.co) or via linkedin [here](http://linkedin.com/in/htwibowo)
+This repository is maintained by Erdiansyah. Get in touch with the author here [by email](erdiavartanovich@gmail.co) or via linkedin [here](http://linkedin.com/in/erdivartanovich)

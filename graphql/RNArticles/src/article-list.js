@@ -15,12 +15,12 @@ import WithLabel from './labeled-text-input';
 
 const server = 'http://10.0.2.2:4000/'; //change this ip base on your environment
 
-const getListArticle = () => {
+const getListArticle = async () => {
     var http =  axios.create({
         baseURL: server,
     });
 
-    return http.post('graphql', {
+    return await http.post('graphql', {
         query: `{
                         getArticles{
                             id
